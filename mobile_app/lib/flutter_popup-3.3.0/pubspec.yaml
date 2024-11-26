@@ -1,0 +1,18 @@
+name: flutter_popup
+description: The flutter_popup package is a versatile tool for creating customizable popups in Flutter apps. Its highlight feature effectively guides user attention to specific areas
+version: 3.3.0
+homepage: https://github.com/herowws/flutter_popup
+
+environment:
+  sdk: '>=3.0.6 <4.0.0'
+ 
+dependencies:
+  flutter:
+    sdk: flutter
+ 
+dev_dependencies:
+  flutter_lints: ^1.0.0
+  flutter_test:
+    sdk: flutter
+
+ 

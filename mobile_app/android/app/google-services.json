@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "137238322571",
+    "project_id": "clokwise-fc113",
+    "storage_bucket": "clokwise-fc113.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137238322571:android:47506a978ec98b377ba38e",
+        "android_client_info": {
+          "package_name": "com.clokwise.clokwise"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh-NO9VWeSH3vzgSRigZKLztAdEQM8kCM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
