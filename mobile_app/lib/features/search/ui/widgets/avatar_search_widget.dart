@@ -33,26 +33,30 @@ class AvatarSearchWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 170),
-                child: Text(
-                  fullName,
-                  style: CwTextStyles.nameText.merge(
-                    const TextStyle(fontSize: 14),
+              Row(
+                children: [
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 170),
+                    child: Text(
+                      fullName,
+                      style: CwTextStyles.nameText.merge(
+                        const TextStyle(fontSize: 14),
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                  overflow: TextOverflow.ellipsis,
-                ),
+                  if (rating != null) ...[
+                    SizedBox(width: 6),
+                    StarsWidget(score: rating!),
+                  ],
+                ],
               ),
-              if (isPaidForView) ...[
+              if (!isPaidForView) ...[
                 SizedBox(height: 4),
                 Text(
                   'Оплачен просмотр мест работы',
                   style: CwTextStyles.headerSubText.withColor(CwColors.primary),
                 ),
-              ],
-              if (rating != null) ...[
-                SizedBox(height: isPaidForView ? 4 : 10),
-                StarsWidget(score: rating!),
               ],
               const SizedBox(height: 12),
             ],

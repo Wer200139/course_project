@@ -512,6 +512,11 @@ class _SearchBodyState extends State<SearchBody> {
                                   totalExperience: state.experts[index].totalExperience % 1 == 0
                                       ? '${state.experts[index].totalExperience.toInt()} года'
                                       : '${state.experts[index].totalExperience.toStringAsFixed(1)} года',
+                                  chatId: state.experts[index].chatId,
+                                  avatar: state.experts[index].avatar?.image,
+                                  name: state.experts[index].firstName,
+                                  rating: state.experts[index].rating,
+                                  userId: state.experts[index].id,
                                   onTap: _isSelectMore
                                       ? () => setState(() {
                                             if (!selectedUsers.contains(state.experts[index].id)) {

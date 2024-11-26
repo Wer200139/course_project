@@ -22,6 +22,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:popup_menu_plus/popup_menu_plus.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:path/path.dart' show basename;
 
@@ -56,6 +57,7 @@ class _InputMessageBarState extends State<InputMessageBar> {
   static const maxSizeLimitNonPremium = 104857600;
   static const maxSizeLimitMessage = 10485760;
   late int currentSize;
+  final GlobalKey _menuKey = GlobalKey();
 
   bool getTotalSizeValid(List<CustomFile> files, bool isPremium) {
     int totalSize = files.fold<int>(0, (sum, file) => sum + file.bytes.length);
@@ -309,34 +311,13 @@ class _InputMessageBarState extends State<InputMessageBar> {
                           prefixIcon: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              SizedBox(width: 12),
-                              CustomPopup(
-                                content: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    CwIconButton(
-                                      width: 28,
-                                      height: 28,
-                                      icon: const Icon(Icons.file_copy),
-                                      onTap: _uploadFile,
-                                    ),
-                                    const SizedBox(width: 4),
-                                    CwIconButton(
-                                      width: 28,
-                                      height: 28,
-                                      icon: const Icon(Icons.image),
-                                      onTap: _uploadImage,
-                                    ),
-                                  ],
-                                ),
-                                child: SvgPicture.asset(
-                                  width: 26,
-                                  height: 26,
-                                  Assets.imageAttach,
-                                ),
-                                onTap: () => {},
-                                onDismissed: () => {},
+                              SizedBox(width: 8),
+                              CwIconButton(
+                                key: _menuKey,
+                                icon: SvgPicture.asset(Assets.imageAttach,),
+                                width: 28,
+                                height: 28,
+                                onTap: onShow,
                               ),
                             ],
                           ),
@@ -448,10 +429,7 @@ class _InputMessageBarState extends State<InputMessageBar> {
       if (!getTotalSizeValid(tempFiles, widget.isPremium)) {
         if (!widget.isPremium) {
           _showPremiumDialog();
-        }
-        else {
-
-        }
+        } else {}
         _showInfoSnackBar();
 
         return;
@@ -503,5 +481,36 @@ class _InputMessageBarState extends State<InputMessageBar> {
       header: 'Error',
       isYellow: false,
     );
+  }
+
+  void onShow() {
+    PopupMenu menu = PopupMenu(
+      config: MenuConfig(
+        backgroundColor: CwColors.bgGray,
+        lineColor: CwColors.customWhite,
+        highlightColor: CwColors.separatorGray,
+      ),
+      context: context,
+      items: [
+        PopUpMenuItem(
+          image: const Icon(Icons.file_copy),
+          userInfo: 'file',
+        ),
+        PopUpMenuItem(
+          image: const Icon(Icons.image),
+          userInfo: 'image',
+        ),
+      ],
+      onClickMenu: onClickMenu,
+    );
+    menu.show(widgetKey: _menuKey);
+  }
+
+  void onClickMenu(PopUpMenuItemProvider item) {
+    if (item.menuUserInfo == 'image') {
+      _uploadImage();
+    } else {
+      _uploadFile();
+    }
   }
 }

@@ -10,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchExpertItem extends StatelessWidget {
   final int userId;
-  final int chatId;
+  final int? chatId;
   final bool isChosen;
   final String name;
   final String? avatar;
@@ -27,8 +27,8 @@ class SearchExpertItem extends StatelessWidget {
     required this.totalExperience,
     required this.isChosen,
     required this.onTap,
-    this.avatar,
-    this.rating,
+    required this.avatar,
+    required this.rating,
     super.key,
   });
 
@@ -51,9 +51,9 @@ class SearchExpertItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AvatarSearchWidget(
-                    image: state.experts[index].avatar?.image,
-                    fullName: 'Эксперт ${state.experts[index].firstName}',
-                    rating: state.experts[index].rating,
+                    image: avatar,
+                    fullName: 'Эксперт $name',
+                    rating: rating,
                     isPaidForView: false,
                   ),
                   const SizedBox(height: 12),
@@ -80,7 +80,7 @@ class SearchExpertItem extends StatelessWidget {
                       style: CwTextStyles.headerSubText,
                       children: [
                         TextSpan(
-                          text: ,
+                          text: totalExperience,
                           style: CwTextStyles.textButton.merge(
                             const TextStyle(
                               color: CwColors.primary,
@@ -92,14 +92,14 @@ class SearchExpertItem extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  state.experts[index].chatId == null
+                  chatId == null
                       ? CwElevatedButton(
                           heightStyle: CwButtonHeightEnum.standard,
                           text: 'Начать общение',
                           block: true,
                           onTap: () {
                             BlocProvider.of<SearchBloc>(context).add(
-                              SearchEvent.startChat(userId: state.experts[index].id),
+                              SearchEvent.startChat(userId: userId),
                             );
                           },
                         )
@@ -112,7 +112,7 @@ class SearchExpertItem extends StatelessWidget {
                             CustomNavigator.showModal(
                               context: context,
                               child: ChatDetailsPage(
-                                id: state.experts[index].chatId!,
+                                id: chatId!,
                               ),
                             );
                           },

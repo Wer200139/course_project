@@ -235,7 +235,7 @@ class _UserChatMessage extends StatelessWidget {
                               const SizedBox(width: 8),
                               ConstrainedBox(
                                 constraints: BoxConstraints(
-                                  maxWidth: MediaQuery.of(context).size.width - 260,
+                                  maxWidth: MediaQuery.of(context).size.width - 280,
                                 ),
                                 child: Text(
                                   file.filename,
@@ -340,7 +340,6 @@ class _OwnerChatMessage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                // Отображение изображений в виде плитки
                 if (files.isNotEmpty) ...[
                   ConstrainedBox(
                     constraints: BoxConstraints(
@@ -407,7 +406,7 @@ class _OwnerChatMessage extends StatelessWidget {
                               const SizedBox(width: 8),
                               ConstrainedBox(
                                 constraints: BoxConstraints(
-                                  maxWidth: MediaQuery.of(context).size.width - 260,
+                                  maxWidth: MediaQuery.of(context).size.width - 280,
                                 ),
                                 child: Text(
                                   file.filename,
