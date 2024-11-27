@@ -18,6 +18,7 @@ ExpertResultModel _$ExpertResultModelFromJson(Map<String, dynamic> json) =>
       relevantExperience: (json['relevant_experience'] as num).toDouble(),
       totalExperience: (json['total_experience'] as num).toDouble(),
       chatId: (json['chat_id'] as num?)?.toInt(),
+      currentUserPaidForView: json['current_user_paid_for_view'] as bool,
     );
 
 Map<String, dynamic> _$ExpertResultModelToJson(ExpertResultModel instance) =>
@@ -30,4 +31,5 @@ Map<String, dynamic> _$ExpertResultModelToJson(ExpertResultModel instance) =>
       'relevant_experience': instance.relevantExperience,
       'total_experience': instance.totalExperience,
       'chat_id': instance.chatId,
+      'current_user_paid_for_view': instance.currentUserPaidForView,
     };

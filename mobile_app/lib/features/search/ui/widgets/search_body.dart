@@ -245,6 +245,11 @@ class _SearchBodyState extends State<SearchBody> {
 
                                     setState(() {
                                       industryId = industryItems[index].id;
+                                      subindustryId = 0;
+                                      functionId = 0;
+                                      subfunctionId = 0;
+
+                                      _functionTitle = '';
                                       _industryTitle = industryItems[index].name;
                                       _isReady = getFormReady();
                                     });
@@ -265,7 +270,10 @@ class _SearchBodyState extends State<SearchBody> {
                                           }
 
                                           subindustryId = subindustryItems[index].id;
+                                          functionId = 0;
+                                          subfunctionId = 0;
                                           _industryTitle = '${industryItems[index].name}, ${subindustryItems[index].name}';
+                                          _functionTitle = '';
                                           _industryController.collapse();
                                         });
                                       },
@@ -304,6 +312,7 @@ class _SearchBodyState extends State<SearchBody> {
 
                                     setState(() {
                                       functionId = functionItems[index].id;
+                                      subfunctionId = 0;
                                       _functionTitle = functionItems[index].name;
                                     });
                                   }
@@ -517,6 +526,7 @@ class _SearchBodyState extends State<SearchBody> {
                                   name: state.experts[index].firstName,
                                   rating: state.experts[index].rating,
                                   userId: state.experts[index].id,
+                                  isPaidForView: state.experts[index].currentUserPaidForView,
                                   onTap: _isSelectMore
                                       ? () => setState(() {
                                             if (!selectedUsers.contains(state.experts[index].id)) {

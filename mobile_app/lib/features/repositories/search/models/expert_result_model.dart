@@ -13,6 +13,7 @@ class ExpertResultModel {
   final double relevantExperience;
   final double totalExperience;
   final int? chatId;
+  final bool currentUserPaidForView;
 
   const ExpertResultModel({
     required this.id,
@@ -23,6 +24,7 @@ class ExpertResultModel {
     required this.relevantExperience,
     required this.totalExperience,
     required this.chatId,
+    required this.currentUserPaidForView,
   });
 
   factory ExpertResultModel.fromJson(Map<String, dynamic> json) => _$ExpertResultModelFromJson(json);

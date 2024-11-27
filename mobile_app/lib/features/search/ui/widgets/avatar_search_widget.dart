@@ -51,7 +51,7 @@ class AvatarSearchWidget extends StatelessWidget {
                   ],
                 ],
               ),
-              if (!isPaidForView) ...[
+              if (isPaidForView) ...[
                 SizedBox(height: 4),
                 Text(
                   'Оплачен просмотр мест работы',

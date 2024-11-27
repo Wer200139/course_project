@@ -17,6 +17,7 @@ class SearchExpertItem extends StatelessWidget {
   final double? rating;
   final String relevantExperience;
   final String totalExperience;
+  final bool isPaidForView;
   final VoidCallback onTap;
 
   const SearchExpertItem({
@@ -29,6 +30,7 @@ class SearchExpertItem extends StatelessWidget {
     required this.onTap,
     required this.avatar,
     required this.rating,
+    required this.isPaidForView,
     super.key,
   });
 
@@ -54,7 +56,7 @@ class SearchExpertItem extends StatelessWidget {
                     image: avatar,
                     fullName: 'Эксперт $name',
                     rating: rating,
-                    isPaidForView: false,
+                    isPaidForView: isPaidForView,
                   ),
                   const SizedBox(height: 12),
                   RichText(
